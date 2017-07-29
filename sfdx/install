@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -e
-mkdir /tmp/bin
-DIR=/tmp/bin
+mkdir /app/bin
+DIR=/app/bin
 
 # if [ -d /usr/local/bin ]; then
 #   DIR=/usr/local/bin
