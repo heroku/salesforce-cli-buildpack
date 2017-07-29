@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+if [ -d /usr/local/bin ]; then
+  DIR=/usr/local/bin
+elif [ -d /usr/bin ]; then
+  DIR=/usr/bin
+else
+  echo "Nowhere to put binary. /usr/local/bin nor /usr/bin exist." 1>&2 && exit 1
+fi
+
+if [ ! -w "$DIR" ]; then
+  echo "$DIR is not writeable. sudo permissions required." 1>&2
+  sudo -k # always prompt for password
+  SUDO=sudo
+fi
+
+CURRENTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+INSTALLPATH_SFDX=$DIR/sfdx
+$SUDO cp $CURRENTDIR/bin/sfdx $INSTALLPATH_SFDX
+# Account for user mask
+$SUDO chmod 755 $INSTALLPATH_SFDX
+
+rm -rf ~/.local/share/sfdx/cli
+mkdir -p ~/.local/share/sfdx
+cp -r $CURRENTDIR ~/.local/share/sfdx/cli
+
+printf "\e[0msfdx installed to \e[38;5;104m$INSTALLPATH_SFDX\e[0m\n"
+$INSTALLPATH_SFDX version
