@@ -21,7 +21,7 @@ mkdir /tmp/cli
 
 ### Execute commands
 echo ""
-echo "-----> Welcome to sfdx-buildpack!"
+echo "-----> \e[38;5;104mWelcome to sfdx-buildpack!\e[0m"
 echo ""
 echo "       Run install command for Salesforce CLI"
 "./sfdx/install" &>/dev/null
