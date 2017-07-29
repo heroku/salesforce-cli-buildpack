@@ -1,7 +1,12 @@
 #!/bin/sh
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-export_env_dir
+START_TIME=$SECONDS
+
+set -o errexit    # always exit on error
+set -o pipefail   # don't ignore exit codes when piping output
+set -o nounset    # fail on unset variables
+unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 WHOAMI=$(whoami)
 PATH=$(pwd)
@@ -12,9 +17,11 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
+export_env_dir
 
 echo ""
-echo "-----> COMPILE:"
+highlight "Welcome to sfdx-buildpack!"
+echo ""
 echo "-----> \$BUILD_DIR: $BUILD_DIR"
 echo "-----> \$CACHE_DIR: $CACHE_DIR"
 echo "-----> \$ENV_DIR: $ENV_DIR"
@@ -37,4 +44,6 @@ echo ""
 # echo "Update Salesforce CLI"
 # sfdx update
 
-exit 0
+highlight "DONE!  Completed in $(($SECONDS - $START_TIME))s"
+
+# exit 0
