@@ -4,7 +4,7 @@
 START_TIME=$SECONDS
 
 set -x            # debug every command
-# set -o errexit    # always exit on error
+set -o errexit    # always exit on error
 # set -o pipefail   # don't ignore exit codes when piping output
 # set -o nounset    # fail on unset variables
 # unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
