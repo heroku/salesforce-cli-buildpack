@@ -8,3 +8,5 @@ config_vars:
 default_process_types:
   hellothere: echo "release waw"
 EOF
+
+ECHO "hello release"
