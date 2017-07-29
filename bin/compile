@@ -21,7 +21,7 @@ mkdir /tmp/cli
 
 ### Execute commands
 echo ""
-echo "-----> \e[38;5;104mWelcome to sfdx-buildpack!\e[0m"
+printf "-----> \e[38;5;104mWelcome to sfdx-buildpack!\e[0m"
 echo ""
 echo "       Run install command for Salesforce CLI"
 "./sfdx/install" &>/dev/null
@@ -33,6 +33,6 @@ echo "       Check Salesforce CLI plugins"
 PLUGINS=$(sfdx plugins)
 echo "       Plugin version: $PLUGINS"
 echo ""
-echo "-----> \e[38;5;104mDONE!\e[0m Completed in $(($SECONDS - $START_TIME))s"
+printf "-----> \e[38;5;104mDONE!\e[0m Completed in $(($SECONDS - $START_TIME))s"
 echo ""
 exit 0
