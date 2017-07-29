@@ -5,11 +5,6 @@
   # echo "HelloFramework"
   echo "detect waw"
 
-echo "Set path for Salesforce CLI"
-export PATH=/tmp/bin/sfdx:$PATH
-
-echo "Update Salesforce CLI"
-/tmp/bin/sfdx/sfdx update
 
 
   exit 0
