@@ -6,4 +6,5 @@ addons:
 config_vars:
   PATH: bin:/usr/bin:/bin:/app/cli/sfdx
 default_process_types:
+  hellothere: echo "release waw"
 EOF
