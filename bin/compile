@@ -17,13 +17,16 @@
 
 # echo "compile waw"
 
-echo "path"
-echo pwd
+echo "-----> BUILD_DIR: $BUILD_DIR"
+echo "-----> CACHE_DIR: $CACHE_DIR"
+echo "-----> ENV_DIR: $ENV_DIR"
+PATH=pwd
+echo "-----> PATH: $PATH"
 
-echo "Run install command for Salesforce CLI"
+echo "-----> Run install command for Salesforce CLI"
 "./sfdx/install"
 
-echo "Set path for Salesforce CLI"
+echo "-----> Set path for Salesforce CLI"
 export PATH=/app/cli/sfdx:$PATH
 
 # echo "Update Salesforce CLI"
