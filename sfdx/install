@@ -1,14 +1,16 @@
 #!/bin/bash
 
 set -e
+mkdir /tmp/bin
+DIR=/tmp/bin
 
-if [ -d /usr/local/bin ]; then
-  DIR=/usr/local/bin
-elif [ -d /usr/bin ]; then
-  DIR=/usr/bin
-else
-  echo "Nowhere to put binary. /usr/local/bin nor /usr/bin exist." 1>&2 && exit 1
-fi
+# if [ -d /usr/local/bin ]; then
+#   DIR=/usr/local/bin
+# elif [ -d /usr/bin ]; then
+#   DIR=/usr/bin
+# else
+#   echo "Nowhere to put binary. /usr/local/bin nor /usr/bin exist." 1>&2 && exit 1
+# fi
 
 if [ ! -w "$DIR" ]; then
   echo "$DIR is not writeable. sudo permissions required." 1>&2
