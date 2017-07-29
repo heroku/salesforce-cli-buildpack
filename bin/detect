@@ -3,8 +3,10 @@
 # this pack is valid for apps with a hello.txt in the root
 # if [ -f $1/hello.txt ]; then
   # echo "HelloFramework"
-echo "sfdx-buildpack"
 
+echo "-----------------------------------"
+echo "-----> sfdx-buildpack"
+echo ""
 echo "-----> BUILD_DIR: $BUILD_DIR"
 echo "-----> CACHE_DIR: $CACHE_DIR"
 echo "-----> ENV_DIR: $ENV_DIR"
@@ -13,8 +15,9 @@ echo "-----> \$2: $2"
 echo "-----> \$3: $3"
 WHOAMI=$(whoami)
 echo "-----> WHOAMI: $WHOAMI"
-
-  exit 0
+echo "-----------------------------------"
+echo ""
+exit 0
 # else
   # exit 1
 # fi
