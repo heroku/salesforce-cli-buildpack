@@ -23,6 +23,8 @@ echo "-----> ENV_DIR: $ENV_DIR"
 echo "-----> \$1: $1"
 echo "-----> \$2: $2"
 echo "-----> \$3: $3"
+WHOAMI=$(whoami)
+echo "-----> WHOAMI: $WHOAMI"
 
 PATH=$(pwd)
 echo "-----> PATH: $PATH"
