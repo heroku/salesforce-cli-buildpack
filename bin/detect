@@ -3,9 +3,16 @@
 # this pack is valid for apps with a hello.txt in the root
 # if [ -f $1/hello.txt ]; then
   # echo "HelloFramework"
-  echo "detect waw"
+echo "sfdx-buildpack"
 
-
+echo "-----> BUILD_DIR: $BUILD_DIR"
+echo "-----> CACHE_DIR: $CACHE_DIR"
+echo "-----> ENV_DIR: $ENV_DIR"
+echo "-----> \$1: $1"
+echo "-----> \$2: $2"
+echo "-----> \$3: $3"
+WHOAMI=$(whoami)
+echo "-----> WHOAMI: $WHOAMI"
 
   exit 0
 # else
