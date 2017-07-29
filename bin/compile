@@ -17,17 +17,20 @@
 
 # echo "compile waw"
 
+WHOAMI=$(whoami)
+PATH=$(pwd)
+
+echo "-----> COMPILE"
+echo ""
 echo "-----> \$1: $1"
 echo "-----> \$2: $2"
 echo "-----> \$3: $3"
-WHOAMI=$(whoami)
 echo "-----> WHOAMI: $WHOAMI"
-
-PATH=$(pwd)
 echo "-----> PATH: $PATH"
 
 echo "-----> Run install command for Salesforce CLI"
 "./sfdx/install"
+echo ""
 
 # CLI_PATH="/app/cli/sfdx"
 
