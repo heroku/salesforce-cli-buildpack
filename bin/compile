@@ -20,7 +20,7 @@ ENV_DIR=${3:-}
 # WHOAMI=$(whoami)
 # PATH=$(pwd)
 # echo ""
-# echo "-----> Welcome to sfdx-buildpack!"
+echo "-----> Welcome to sfdx-buildpack!"
 # echo ""
 mkdir /tmp/cli
 # echo "-----> Run install command for Salesforce CLI"
