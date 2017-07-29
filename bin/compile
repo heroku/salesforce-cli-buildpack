@@ -16,20 +16,22 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
+### Create temp folder
 mkdir /tmp/cli
 
+### Execute commands
+echo ""
 echo "-----> Welcome to sfdx-buildpack!"
 echo ""
 echo "       Run install command for Salesforce CLI"
 "./sfdx/install" &>/dev/null
 echo "       Set path for Salesforce CLI ($CLI_PATH)"
 export PATH=$CLI_PATH:$PATH
-
 echo "       Update Salesforce CLI"
 sfdx update &>/dev/null
 echo "       Check Salesforce CLI plugins"
 PLUGINS=$(sfdx plugins)
-echo "-----> Plugin version: $PLUGINS"
+echo "       Plugin version: $PLUGINS"
 echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
-
-# exit 0
+echo ""
+exit 0

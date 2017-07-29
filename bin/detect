@@ -2,5 +2,5 @@
 # bin/detect <build-dir>
 
 WHOAMI=$(whoami)
-echo "sfdx-buildpack ($1 | $WHOAMI)"
+echo "sfdx-buildpack"
 exit 0
