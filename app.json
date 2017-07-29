@@ -1,0 +1,19 @@
+{
+    "name": "sfdx-buildpack",
+    "version": "1.0.0",
+    "description": "Buildpack for the Salesforce CLI",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wadewegner/sfdx-buildpack.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wadewegner/sfdx-buildpack/issues"
+    },
+    "homepage": "https://github.com/wadewegner/sfdx-buildpack#readme",
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+}
