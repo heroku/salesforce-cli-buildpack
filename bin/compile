@@ -23,7 +23,7 @@ echo ""
 echo "-----> Welcome to sfdx-buildpack!"
 echo ""
 echo "-----> Run install command for Salesforce CLI"
-# "./sfdx/install"
+"./sfdx/install"
 echo ""
 
 # CLI_PATH="/app/cli/sfdx"
