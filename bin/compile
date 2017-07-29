@@ -18,7 +18,7 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
 mkdir /tmp/cli
 
-highlight "-----> Welcome to sfdx-buildpack!"
+echo "-----> Welcome to sfdx-buildpack!"
 echo ""
 echo "       Run install command for Salesforce CLI"
 "./sfdx/install"
@@ -29,6 +29,6 @@ echo "       Update Salesforce CLI"
 sfdx update
 echo "       Check Salesforce CLI plugins"
 sfdx plugins
-highlight "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
+echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 
 # exit 0
