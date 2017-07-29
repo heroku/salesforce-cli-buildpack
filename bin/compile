@@ -42,3 +42,5 @@ echo "-----> Run install command for Salesforce CLI"
 
 # echo "Update Salesforce CLI"
 # sfdx update
+
+exit 0
