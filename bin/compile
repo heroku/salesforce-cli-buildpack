@@ -17,6 +17,9 @@
 
 # echo "compile waw"
 
+echo "path"
+echo pwd
+
 echo "Run install command for Salesforce CLI"
 "./sfdx/install"
 
