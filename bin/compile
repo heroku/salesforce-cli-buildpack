@@ -27,4 +27,4 @@ echo "Set path for Salesforce CLI"
 export PATH=/tmp/bin/sfdx:$PATH
 
 echo "Update Salesforce CLI"
-sfdx update
+/tmp/bin/sfdx/sfdx update
