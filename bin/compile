@@ -35,8 +35,8 @@ export PATH=$CLI_PATH:$PATH
 LS=$(ls -l $CLI_PATH)
 echo "-----> LS: $LS"
 
-# echo "Update Salesforce CLI"
-# sfdx update
+echo "Update Salesforce CLI"
+sfdx update
 
 echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 
