@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-mkdir /app/tmp/cli
 DIR=/app/tmp/cli
 
 # if [ -d /usr/local/bin ]; then
