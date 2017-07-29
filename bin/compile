@@ -32,8 +32,8 @@ CLI_PATH="/tmp/cli/sfdx"
 echo "-----> Set path for Salesforce CLI ($CLI_PATH)"
 export PATH=$CLI_PATH:$PATH
 
-# LS=$(ls -l $CLI_PATH)
-# echo "-----> LS: $LS"
+LS=$(ls -l $CLI_PATH)
+echo "-----> LS: $LS"
 
 # echo "Update Salesforce CLI"
 # sfdx update
