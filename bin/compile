@@ -3,36 +3,29 @@
 
 START_TIME=$SECONDS
 
-set -x            # debug every command
+# set -x            # debug every command
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 set -o nounset    # fail on unset variables
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 ### Configure directories
+CLI_PATH="/tmp/cli"
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
-# # export_env_dir
-
-# WHOAMI=$(whoami)
-# PATH=$(pwd)
-# echo ""
-echo "-----> Welcome to sfdx-buildpack!"
-# echo ""
 mkdir /tmp/cli
-echo "-----> Run install command for Salesforce CLI"
+
+echo "-----> Welcome to sfdx-buildpack!"
+echo ""
+echo "       Run install command for Salesforce CLI"
 "./sfdx/install"
-# echo ""
-
-CLI_PATH="/tmp/cli"
-
-echo "-----> Set path for Salesforce CLI ($CLI_PATH)"
+echo "       Set path for Salesforce CLI ($CLI_PATH)"
 export PATH=$CLI_PATH:$PATH
 
-echo "Update Salesforce CLI"
+echo "       Update Salesforce CLI"
 sfdx update
 
 echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
