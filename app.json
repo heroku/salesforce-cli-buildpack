@@ -1,17 +1,17 @@
 {
-    "name": "sfdx-buildpack",
+    "name": "salesforce-cli-buildback",
     "version": "1.0.0",
     "description": "Buildpack for the Salesforce CLI",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/wadewegner/sfdx-buildpack.git"
+        "url": "git+https://github.com/wadewegner/salesforce-cli-buildback.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/wadewegner/sfdx-buildpack/issues"
+        "url": "https://github.com/wadewegner/salesforce-cli-buildback/issues"
     },
-    "homepage": "https://github.com/wadewegner/sfdx-buildpack#readme",
+    "homepage": "https://github.com/wadewegner/salesforce-cli-buildback#readme",
     "dependencies": {
     },
     "devDependencies": {
