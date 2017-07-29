@@ -23,8 +23,8 @@ ENV_DIR=${3:-}
 echo "-----> Welcome to sfdx-buildpack!"
 # echo ""
 mkdir /tmp/cli
-# echo "-----> Run install command for Salesforce CLI"
-# "./sfdx/install"
+echo "-----> Run install command for Salesforce CLI"
+"./sfdx/install"
 # echo ""
 
 # CLI_PATH="/app/cli/sfdx"
