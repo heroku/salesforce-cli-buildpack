@@ -27,16 +27,12 @@ echo "-----> Run install command for Salesforce CLI"
 "./sfdx/install"
 # echo ""
 
-CLI_PATH="/tmp/cli/sfdx"
+CLI_PATH="/tmp/cli"
 
 echo "-----> Set path for Salesforce CLI ($CLI_PATH)"
 export PATH=$CLI_PATH:$PATH
 
-LS=$(ls -l $CLI_PATH)
-echo "-----> LS: $LS"
-
 echo "Update Salesforce CLI"
-cd $CLI_PATH
 sfdx update
 
 echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
