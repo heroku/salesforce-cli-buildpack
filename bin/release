@@ -3,9 +3,6 @@
 
 cat << EOF
 ---
-addons:
-config_vars:
-  PATH: bin:/usr/bin:/bin:/app/cli/sfdx
 default_process_types:
   web: npm start
 EOF
