@@ -6,11 +6,16 @@ export_env_dir
 WHOAMI=$(whoami)
 PATH=$(pwd)
 
+### Configure directories
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
+
 echo ""
 echo "-----> COMPILE:"
-echo "-----> \$1: $1"
-echo "-----> \$2: $2"
-echo "-----> \$3: $3"
+echo "-----> \$BUILD_DIR: $BUILD_DIR"
+echo "-----> \$CACHE_DIR: $CACHE_DIR"
+echo "-----> \$ENV_DIR: $ENV_DIR"
 echo "-----> WHOAMI: $WHOAMI"
 echo "-----> PATH: $PATH"
 
