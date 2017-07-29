@@ -1,18 +1,4 @@
 #!/bin/sh
 
-# this pack is valid for apps with a hello.txt in the root
-# if [ -f $1/hello.txt ]; then
-  # echo "HelloFramework"
-
-echo "-----------------------------------"
-echo "-----> sfdx-buildpack"
-echo ""
-echo "-----> \$1: $1"
-WHOAMI=$(whoami)
-echo "-----> WHOAMI: $WHOAMI"
-echo "-----------------------------------"
-echo ""
+echo "sfdx-buildpack"
 exit 0
-# else
-  # exit 1
-# fi
