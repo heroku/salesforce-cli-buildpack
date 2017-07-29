@@ -4,6 +4,14 @@
 # if [ -f $1/hello.txt ]; then
   # echo "HelloFramework"
   echo "detect waw"
+
+echo "Set path for Salesforce CLI"
+export PATH=/tmp/bin/sfdx:$PATH
+
+echo "Update Salesforce CLI"
+/tmp/bin/sfdx/sfdx update
+
+
   exit 0
 # else
   # exit 1
