@@ -1,4 +1,4 @@
 #!/bin/sh
 
-echo "sfdx-buildpack"
+echo "sfdx-buildpack ($1 | $WHOAMI)"
 exit 0
