@@ -13,7 +13,7 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
-# BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
 # # export_env_dir
 
