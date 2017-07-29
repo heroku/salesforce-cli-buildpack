@@ -3,7 +3,7 @@
 # this pack is valid for apps with a hello.txt in the root
 # if [ -f $1/hello.txt ]; then
   # echo "HelloFramework"
-  echo "detect"
+  echo "detect waw"
   exit 0
 # else
   # exit 1

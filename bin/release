@@ -6,5 +6,5 @@ addons:
 config_vars:
   PATH: bin:/usr/bin:/bin
 default_process_types:
-  hello: echo "release"
+  hello: echo "release waw"
 EOF
