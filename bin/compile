@@ -26,9 +26,10 @@ echo "       Set path for Salesforce CLI ($CLI_PATH)"
 export PATH=$CLI_PATH:$PATH
 
 echo "       Update Salesforce CLI"
-sfdx update
+UPDATE=$(sfdx update)
 echo "       Check Salesforce CLI plugins"
-sfdx plugins
+PLUGINS=$(sfdx plugins)
+echo "-----> $PLUGINS"
 echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 
 # exit 0
