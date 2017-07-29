@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-# START_TIME=$SECONDS
+START_TIME=$SECONDS
 
 # set -x            # debug every command
 # set -o errexit    # always exit on error
@@ -38,6 +38,6 @@ mkdir /tmp/cli
 # echo "Update Salesforce CLI"
 # sfdx update
 
-# echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
+echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 
 # exit 0
