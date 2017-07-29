@@ -9,9 +9,6 @@ set -o pipefail   # don't ignore exit codes when piping output
 set -o nounset    # fail on unset variables
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
-WHOAMI=$(whoami)
-PATH=$(pwd)
-
 ### Configure directories
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
@@ -20,6 +17,8 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
 # export_env_dir
 
+WHOAMI=$(whoami)
+PATH=$(pwd)
 echo ""
 highlight "Welcome to sfdx-buildpack!"
 echo ""
