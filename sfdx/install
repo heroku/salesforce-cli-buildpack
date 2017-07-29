@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -e
-
-DIR=/app/cli
+mkdir /app/tmp/cli
+DIR=/app/tmp/cli
 
 # if [ -d /usr/local/bin ]; then
 #   DIR=/usr/local/bin
