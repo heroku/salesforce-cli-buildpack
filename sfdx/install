@@ -27,5 +27,5 @@ rm -rf ~/.local/share/sfdx/cli
 mkdir -p ~/.local/share/sfdx
 cp -r $CURRENTDIR ~/.local/share/sfdx/cli
 
-printf "\e[0msfdx installed to \e[38;5;104m$INSTALLPATH_SFDX\e[0m\n"
+printf "       \e[0msfdx installed to \e[38;5;104m$INSTALLPATH_SFDX\e[0m\n"
 $INSTALLPATH_SFDX version
