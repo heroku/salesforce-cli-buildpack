@@ -20,7 +20,7 @@
 echo "-----> BUILD_DIR: $BUILD_DIR"
 echo "-----> CACHE_DIR: $CACHE_DIR"
 echo "-----> ENV_DIR: $ENV_DIR"
-PATH=pwd
+PATH=$(pwd)
 echo "-----> PATH: $PATH"
 
 echo "-----> Run install command for Salesforce CLI"
