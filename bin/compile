@@ -20,6 +20,9 @@
 echo "-----> BUILD_DIR: $BUILD_DIR"
 echo "-----> CACHE_DIR: $CACHE_DIR"
 echo "-----> ENV_DIR: $ENV_DIR"
+echo "-----> \$1: $1"
+echo "-----> \$2: $2"
+
 PATH=$(pwd)
 echo "-----> PATH: $PATH"
 
