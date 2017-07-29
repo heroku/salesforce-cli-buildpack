@@ -32,6 +32,7 @@ sfdx update &>/dev/null
 echo "       Check Salesforce CLI plugins"
 PLUGINS=$(sfdx plugins)
 echo "       Plugin version: $PLUGINS"
-echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
+echo ""
+echo "-----> \e[38;5;104mDONE!\e[0m Completed in $(($SECONDS - $START_TIME))s"
 echo ""
 exit 0
