@@ -20,7 +20,7 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 WHOAMI=$(whoami)
 PATH=$(pwd)
 echo ""
-highlight "Welcome to sfdx-buildpack!"
+echo "-----> Welcome to sfdx-buildpack!"
 echo ""
 echo "-----> \$BUILD_DIR: $BUILD_DIR"
 echo "-----> \$CACHE_DIR: $CACHE_DIR"
