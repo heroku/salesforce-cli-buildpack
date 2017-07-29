@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
-# bin/release <build-dir>
+#!/bin/sh
 
 cat << EOF
 ---
+addons:
+config_vars:
 default_process_types:
-  web: npm start
 EOF
