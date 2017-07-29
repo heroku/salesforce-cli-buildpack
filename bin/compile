@@ -21,7 +21,7 @@ mkdir /tmp/cli
 echo "-----> Welcome to sfdx-buildpack!"
 echo ""
 echo "       Run install command for Salesforce CLI"
-"./sfdx/install" 
+"./sfdx/install" &>/dev/null
 echo "       Set path for Salesforce CLI ($CLI_PATH)"
 export PATH=$CLI_PATH:$PATH
 
