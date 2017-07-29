@@ -1,27 +1,13 @@
 #!/bin/sh
+# bin/compile <build-dir> <cache-dir> <env-dir>
 
-# indent() {
-#   sed -u 's/^/       /'
-# }
-
-# echo "-----> Found a hello.txt"
-
-# # if hello.txt is empty, abort the build
-# if [ ! -s $1/hello.txt ]; then
-#   echo "hello.txt was empty" | indent
-#   exit 1
-# fi
-
-# # replace hello with goodbye in a new file
-# cat $1/hello.txt | sed -e "s/[Hh]ello/Goodbye/g" > $1/goodbye.txt
-
-# echo "compile waw"
+export_env_dir
 
 WHOAMI=$(whoami)
 PATH=$(pwd)
 
-echo "-----> COMPILE"
 echo ""
+echo "-----> COMPILE:"
 echo "-----> \$1: $1"
 echo "-----> \$2: $2"
 echo "-----> \$3: $3"
