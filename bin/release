@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# bin/release <build-dir>
 
 cat << EOF
 ---
@@ -8,5 +9,3 @@ config_vars:
 default_process_types:
   hellothere: echo "release waw"
 EOF
-
-ECHO "hello release"
