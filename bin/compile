@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-START_TIME=$SECONDS
+# START_TIME=$SECONDS
 
 # set -x            # debug every command
 # set -o errexit    # always exit on error
@@ -10,22 +10,22 @@ START_TIME=$SECONDS
 # unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 ### Configure directories
-BUILD_DIR=${1:-}
-CACHE_DIR=${2:-}
-ENV_DIR=${3:-}
-BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+# BUILD_DIR=${1:-}
+# CACHE_DIR=${2:-}
+# ENV_DIR=${3:-}
+# BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
-# export_env_dir
+# # export_env_dir
 
-WHOAMI=$(whoami)
-PATH=$(pwd)
-echo ""
-echo "-----> Welcome to sfdx-buildpack!"
-echo ""
+# WHOAMI=$(whoami)
+# PATH=$(pwd)
+# echo ""
+# echo "-----> Welcome to sfdx-buildpack!"
+# echo ""
 mkdir /tmp/cli
-echo "-----> Run install command for Salesforce CLI"
-"./sfdx/install"
-echo ""
+# echo "-----> Run install command for Salesforce CLI"
+# "./sfdx/install"
+# echo ""
 
 # CLI_PATH="/app/cli/sfdx"
 
@@ -38,6 +38,6 @@ echo ""
 # echo "Update Salesforce CLI"
 # sfdx update
 
-echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
+# echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 
 # exit 0

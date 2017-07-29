@@ -2,7 +2,6 @@
 
 cat << EOF
 ---
-addons:
-config_vars:
+addons: []
 default_process_types:
 EOF
