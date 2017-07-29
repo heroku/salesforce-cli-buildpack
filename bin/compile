@@ -22,15 +22,8 @@ PATH=$(pwd)
 echo ""
 echo "-----> Welcome to sfdx-buildpack!"
 echo ""
-echo "-----> \$BUILD_DIR: $BUILD_DIR"
-echo "-----> \$CACHE_DIR: $CACHE_DIR"
-echo "-----> \$ENV_DIR: $ENV_DIR"
-echo "-----> \$BP_DIR: $BP_DIR"
-echo "-----> WHOAMI: $WHOAMI"
-echo "-----> PATH: $PATH"
-
 echo "-----> Run install command for Salesforce CLI"
-"./sfdx/install"
+# "./sfdx/install"
 echo ""
 
 # CLI_PATH="/app/cli/sfdx"
