@@ -37,6 +37,6 @@ echo ""
 # echo "Update Salesforce CLI"
 # sfdx update
 
-highlight "DONE!  Completed in $(($SECONDS - $START_TIME))s"
+echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 
 # exit 0
