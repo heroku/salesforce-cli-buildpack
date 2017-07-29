@@ -4,5 +4,6 @@ cat << EOF
 ---
 addons:
 config_vars:
+  PATH: bin:/usr/bin:/bin
 default_process_types:
 EOF
