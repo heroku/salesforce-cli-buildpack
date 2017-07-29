@@ -21,14 +21,14 @@ mkdir /tmp/cli
 echo "-----> Welcome to sfdx-buildpack!"
 echo ""
 echo "       Run install command for Salesforce CLI"
-$("./sfdx/install")
+"./sfdx/install"
 echo "       Set path for Salesforce CLI ($CLI_PATH)"
 export PATH=$CLI_PATH:$PATH
 
 echo "       Update Salesforce CLI"
-$(sfdx update)
+sfdx update
 echo "       Check Salesforce CLI plugins"
-$(sfdx plugins)
+sfdx plugins
 echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 
 # exit 0
