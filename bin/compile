@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
 START_TIME=$SECONDS
