@@ -22,9 +22,3 @@ echo pwd
 
 echo "Run install command for Salesforce CLI"
 "./sfdx/install"
-
-echo "Set path for Salesforce CLI"
-export PATH=/tmp/bin/sfdx:$PATH
-
-echo "Update Salesforce CLI"
-/tmp/bin/sfdx/sfdx update
