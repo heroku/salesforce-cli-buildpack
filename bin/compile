@@ -22,7 +22,7 @@ PATH=$(pwd)
 echo ""
 echo "-----> Welcome to sfdx-buildpack!"
 echo ""
-mkdir /app/tmp/cli
+mkdir /tmp/cli
 echo "-----> Run install command for Salesforce CLI"
 "./sfdx/install"
 echo ""
