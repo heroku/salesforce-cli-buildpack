@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-WHOAMI=$(whoami)
-echo "sfdx-buildpack"
+echo "salesforce-cli-buildpack"
 exit 0
