@@ -1,4 +1,5 @@
 #!/bin/sh
 
+WHOAMI=$(whoami)
 echo "sfdx-buildpack ($1 | $WHOAMI)"
 exit 0
