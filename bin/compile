@@ -41,9 +41,8 @@ install_sfdx_cli() {
 
   pwd
   echo $PATH
-  which sfdx
-  
-  sfdx update
+    
+  $DIR/.local/share/sfdx/cli/sfdx update
 }
 
 setup_dirs() {
