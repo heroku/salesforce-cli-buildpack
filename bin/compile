@@ -42,7 +42,8 @@ install_sfdx_cli() {
 }
 
 setup_dirs() {
-  export PATH="$APP/.sfdx/bin:$PATH"
+  local DIR="$1"
+  export PATH="$DIR/.sfdx/bin:$PATH"
 }
 
 export_env "$ENV_DIR"
