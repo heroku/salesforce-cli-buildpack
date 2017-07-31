@@ -37,15 +37,7 @@ install_sfdx_cli() {
   rm -rf "$DIR/.local/share/sfdx/cli"
   mkdir -p "$DIR/.local/share/sfdx"
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
-  # ls -laR $DIR  
-
-  # pwd
   echo $PATH
-  # ls -l "$DIR/.local/"
-  # ls -l "$DIR/.local/share/"
-  # ls -l "$DIR/.local/share/sfdx"
-  # ls -l "$DIR/.local/share/sfdx/cli"
-  # ls -l "$DIR/.local/share/sfdx/cli/bin"
   sfdx update
 }
 
@@ -56,12 +48,8 @@ setup_dirs() {
 }
 
 export_env "$ENV_DIR"
-
-setup_dirs "$BUILD_DIR"
-
-echo $PATH
-
-install_sfdx_cli "$BUILD_DIR"
+setup_dirs "$CLI_PATH"
+install_sfdx_cli "$CLI_PATH"
 
 exit 1
 
