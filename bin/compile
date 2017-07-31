@@ -16,11 +16,16 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
+header() {
+  echo "" || true
+  echo -e "\033[96m\033[1m\033[40m=== $*\033[0m" || true
+}
+
 ### Create temp folder
 mkdir /tmp/cli
 
 ### Execute commands
-header "Welcome to salesforce-cli-buildpack!"
+header 'Welcome to salesforce-cli-buildpack!'
 echo "       Running install command for Salesforce CLI ..."
 "./sfdx/install" &>/dev/null
 echo "       Setting path for Salesforce CLI ($CLI_PATH) ..."
@@ -35,7 +40,3 @@ echo "-----> DONE!  Completed in $(($SECONDS - $START_TIME))s"
 echo ""
 exit 0
 
-header() {
-  echo "" || true
-  echo -e "\033[96m\033[1m\033[40m=== $*\033[0m" || true
-}
