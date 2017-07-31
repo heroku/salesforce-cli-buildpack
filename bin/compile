@@ -50,6 +50,8 @@ export_env "$ENV_DIR"
 
 setup_dirs "$BUILD_DIR"
 
+echo $PATH
+
 install_sfdx_cli "$BUILD_DIR"
 
 # ### Create temp folder
