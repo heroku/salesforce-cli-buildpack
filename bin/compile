@@ -35,23 +35,36 @@ setup_dirs() {
   export PATH="$APP/.sfdx/bin:$PATH"
 }
 
+install_sfdx_cli() {
+  local URL='https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz'
+  local DIR="$1"
+  curl --silent --location "$URL" | tar xJ
+  cp sfdx/bin/sfdx "$DIR/.sfdx/bin/sfdx"
+  rm -rf "$DIR/.local/share/sfdx/cli"
+  mkdir -p "$DIR/.local/share/sfdx"
+  cp -r sfdx "$DIR/.local/share/sfdx/cli"
+  sfdx update
+}
+
 export_env "$ENV_DIR"
 # setup_dirs "$BP_DIR" "$BUILD_DIR"
 
-### Create temp folder
-mkdir /tmp/cli
+install_sfdx_cli "$BUILD_DIR"
 
-### Execute commands
-header 'Welcome to salesforce-cli-buildpack!'
-update "Running install command for Salesforce CLI ..."
-"./sfdx/install" &>/dev/null
-update "Setting path for Salesforce CLI ($CLI_PATH) ..."
-export PATH=$CLI_PATH:$PATH
-update "Installing the salesforcedx plugin ..."
-sfdx update &>/dev/null
-update "Checking Salesforce CLI plugins ..."
-PLUGINS=$(sfdx plugins)
-update "Plugin version: $PLUGINS"
-header "DONE! Completed in $(($SECONDS - $START_TIME))s"
+# ### Create temp folder
+# mkdir /tmp/cli
+
+# ### Execute commands
+# header 'Welcome to salesforce-cli-buildpack!'
+# update "Running install command for Salesforce CLI ..."
+# "./sfdx/install" &>/dev/null
+# update "Setting path for Salesforce CLI ($CLI_PATH) ..."
+# export PATH=$CLI_PATH:$PATH
+# update "Installing the salesforcedx plugin ..."
+# sfdx update &>/dev/null
+# update "Checking Salesforce CLI plugins ..."
+# PLUGINS=$(sfdx plugins)
+# update "Plugin version: $PLUGINS"
+# header "DONE! Completed in $(($SECONDS - $START_TIME))s"
 exit 0
 
