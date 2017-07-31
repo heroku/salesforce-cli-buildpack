@@ -36,7 +36,7 @@ setup_dirs() {
 }
 
 export_env "$ENV_DIR"
-setup_dirs "$BP_DIR" "$BUILD_DIR"
+# setup_dirs "$BP_DIR" "$BUILD_DIR"
 
 ### Create temp folder
 mkdir /tmp/cli
