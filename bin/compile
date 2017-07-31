@@ -38,12 +38,16 @@ install_sfdx_cli() {
   mkdir -p "$DIR/.local/share/sfdx"
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
   # ls -laR $DIR  
+
+  which sfdx
+  pwd
   sfdx update
 }
 
 setup_dirs() {
   local DIR="$1"
   export PATH="$DIR/.sfdx/bin:$PATH"
+
 }
 
 export_env "$ENV_DIR"
