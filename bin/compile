@@ -45,6 +45,7 @@ install_sfdx_cli() {
   ls -l "$DIR/.local/share/"
   ls -l "$DIR/.local/share/sfdx"
   ls -l "$DIR/.local/share/sfdx/cli"
+  ls -l "$DIR/.local/share/sfdx/cli/bin"
   # $DIR/.local/share/sfdx/cli/sfdx update
 }
 
