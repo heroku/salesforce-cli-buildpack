@@ -62,6 +62,8 @@ echo $PATH
 
 install_sfdx_cli "$BUILD_DIR"
 
+exit 1
+
 # ### Create temp folder
 # mkdir /tmp/cli
 
