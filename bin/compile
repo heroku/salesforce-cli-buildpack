@@ -32,14 +32,14 @@ setup_dirs() {
   local BP="$1"
   local APP="$2"
   rsync -rLptD $BP/app/ "$APP"
-  export PATH="$APP/.sfdx/bin:$PATH"
+  export PATH="$APP/.heroku/bin:$PATH"
 }
 
 install_sfdx_cli() {
   local URL='https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz'
   local DIR="$1"
   curl --silent --location "$URL" | tar xJ
-  cp sfdx/bin/sfdx "$DIR/.sfdx/bin/sfdx"
+  cp sfdx/bin/sfdx "$DIR/.heroku/bin/sfdx"
   rm -rf "$DIR/.local/share/sfdx/cli"
   mkdir -p "$DIR/.local/share/sfdx"
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
