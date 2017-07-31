@@ -3,7 +3,7 @@
 
 START_TIME=$SECONDS
 
-set -x            # debug every command
+# set -x            # debug every command
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 set -o nounset    # fail on unset variables
@@ -31,14 +31,18 @@ update() {
 install_sfdx_cli() {
   local URL='https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz'
   local DIR="$1"
+  update "Downloading tarball ..."
   curl --silent --location "$URL" | tar xJ
+  update "Copying binary ..."
   mkdir -p "$DIR/.sfdx/bin/sfdx"
   cp sfdx/bin/sfdx "$DIR/.sfdx/bin/sfdx"
   rm -rf "$DIR/.local/share/sfdx/cli"
   mkdir -p "$DIR/.local/share/sfdx"
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
-  echo $PATH
-  sfdx update
+  update "Updating Salesforce DX plugin"
+  sfdx update &>/dev/null
+  PLUGINS=$(sfdx plugins)
+  update "Plugin version: $PLUGINS"
 }
 
 setup_dirs() {
@@ -47,11 +51,14 @@ setup_dirs() {
 
 }
 
+update "Exporting environment directories ..."
 export_env "$ENV_DIR"
+update "Setting up CLI paths ..."
 setup_dirs "$CLI_PATH"
+updating "Starting CLI installation ..."
 install_sfdx_cli "$CLI_PATH"
-
-exit 1
+header "DONE! Completed in $(($SECONDS - $START_TIME))s"
+exit 0
 
 # ### Create temp folder
 # mkdir /tmp/cli
@@ -68,5 +75,4 @@ exit 1
 # PLUGINS=$(sfdx plugins)
 # update "Plugin version: $PLUGINS"
 # header "DONE! Completed in $(($SECONDS - $START_TIME))s"
-exit 0
 
