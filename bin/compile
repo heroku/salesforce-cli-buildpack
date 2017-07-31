@@ -48,7 +48,7 @@ setup_dirs() {
 
 export_env "$ENV_DIR"
 
-setup_dirs
+setup_dirs "$BUILD_DIR"
 
 install_sfdx_cli "$BUILD_DIR"
 
