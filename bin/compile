@@ -41,8 +41,11 @@ install_sfdx_cli() {
 
   pwd
   echo $PATH
-    
-  $DIR/.local/share/sfdx/cli/sfdx update
+  ls -l /tmp/build_c7b354edb042bde5ed6090543f290338/.local/
+  ls -l /tmp/build_c7b354edb042bde5ed6090543f290338/.local/
+  ls -l /tmp/build_c7b354edb042bde5ed6090543f290338/.local/share/
+  ls -l /tmp/build_c7b354edb042bde5ed6090543f290338/.local/share/sfdx/
+  # $DIR/.local/share/sfdx/cli/sfdx update
 }
 
 setup_dirs() {
