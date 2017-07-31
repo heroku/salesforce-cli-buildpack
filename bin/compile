@@ -28,13 +28,6 @@ update() {
   echo -e "       $*" || true
 }
 
-setup_dirs() {
-  local BP="$1"
-  local APP="$2"
-  rsync -rLptD $BP/app/ "$APP"
-  export PATH="$APP/.heroku/bin:$PATH"
-}
-
 install_sfdx_cli() {
   local URL='https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz'
   local DIR="$1"
@@ -48,7 +41,6 @@ install_sfdx_cli() {
 }
 
 export_env "$ENV_DIR"
-setup_dirs "$BP_DIR" "$BUILD_DIR"
 
 install_sfdx_cli "$BUILD_DIR"
 
