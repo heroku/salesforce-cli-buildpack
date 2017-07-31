@@ -39,19 +39,19 @@ install_sfdx_cli() {
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
   # ls -laR $DIR  
 
-  pwd
+  # pwd
   echo $PATH
-  ls -l "$DIR/.local/"
-  ls -l "$DIR/.local/share/"
-  ls -l "$DIR/.local/share/sfdx"
-  ls -l "$DIR/.local/share/sfdx/cli"
-  ls -l "$DIR/.local/share/sfdx/cli/bin"
-  # $DIR/.local/share/sfdx/cli/sfdx update
+  # ls -l "$DIR/.local/"
+  # ls -l "$DIR/.local/share/"
+  # ls -l "$DIR/.local/share/sfdx"
+  # ls -l "$DIR/.local/share/sfdx/cli"
+  # ls -l "$DIR/.local/share/sfdx/cli/bin"
+  sfdx update
 }
 
 setup_dirs() {
   local DIR="$1"
-  export PATH="$DIR/.local/share/sfdx/cli:$DIR/.sfdx/bin:$PATH"
+  export PATH="$DIR/.local/share/sfdx/cli/bin:$DIR/.sfdx/bin:$PATH"
 
 }
 
