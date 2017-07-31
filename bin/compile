@@ -54,8 +54,8 @@ header 'Welcome to salesforce-cli-buildpack!'
 update "Exporting environment directories ..."
 export_env "$ENV_DIR"
 update "Setting up CLI paths ..."
-setup_dirs "$CLI_PATH"
+setup_dirs "$BUILD_DIR"
 update "Starting CLI installation ..."
-install_sfdx_cli "$CLI_PATH"
+install_sfdx_cli "$BUILD_DIR"
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
 exit 0
