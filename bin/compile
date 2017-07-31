@@ -21,7 +21,7 @@ source <(curl -s --retry 3 https://lang-common.s3.amazonaws.com/buildpack-stdlib
 ### Helpful functions
 header() {
   echo "" || true
-  echo -e "\033[96m\033[1m\033[40m-----> $*\033[0m" || true
+  echo -e "-----> \e[34m$*\033[0m" || true
 }
 
 update() {
