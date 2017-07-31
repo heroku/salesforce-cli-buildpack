@@ -3,7 +3,7 @@
 
 START_TIME=$SECONDS
 
-# set -x            # debug every command
+set -x            # debug every command
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 set -o nounset    # fail on unset variables
@@ -16,15 +16,27 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
+source <(curl -s --retry 3 https://lang-common.s3.amazonaws.com/buildpack-stdlib/v7/stdlib.sh)
+
+### Helpful functions
 header() {
   echo "" || true
   echo -e "\033[96m\033[1m\033[40m-----> $*\033[0m" || true
 }
 
 update() {
-  echo "" || true
   echo -e "       $*" || true
 }
+
+setup_dirs() {
+  local BP="$1"
+  local APP="$2"
+  rsync -rLptD $BP/app/ "$APP"
+  export PATH="$APP/.sfdx/bin:$PATH"
+}
+
+export_env "$ENV_DIR"
+setup_dirs "$BP_DIR" "$BUILD_DIR"
 
 ### Create temp folder
 mkdir /tmp/cli
