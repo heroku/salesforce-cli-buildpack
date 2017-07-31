@@ -41,7 +41,13 @@ install_sfdx_cli() {
   sfdx update
 }
 
+setup_dirs() {
+  export PATH="$APP/.sfdx/bin:$PATH"
+}
+
 export_env "$ENV_DIR"
+
+setup_dirs
 
 install_sfdx_cli "$BUILD_DIR"
 
