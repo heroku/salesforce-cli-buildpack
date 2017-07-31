@@ -37,7 +37,7 @@ install_sfdx_cli() {
   rm -rf "$DIR/.local/share/sfdx/cli"
   mkdir -p "$DIR/.local/share/sfdx"
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
-  ls -laR $DIR  
+  # ls -laR $DIR  
   sfdx update
 }
 
