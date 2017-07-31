@@ -48,7 +48,6 @@ install_sfdx_cli() {
 setup_dirs() {
   local DIR="$1"
   export PATH="$DIR/.local/share/sfdx/cli/bin:$DIR/.sfdx/bin:$PATH"
-
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
