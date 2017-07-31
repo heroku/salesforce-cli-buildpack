@@ -32,7 +32,7 @@ install_sfdx_cli() {
   local URL='https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz'
   local DIR="$1"
   curl --silent --location "$URL" | tar xJ
-  ls -l $DIR
+  ls -la $DIR
   cp sfdx/bin/sfdx "$DIR/.heroku/bin/sfdx"
   rm -rf "$DIR/.local/share/sfdx/cli"
   mkdir -p "$DIR/.local/share/sfdx"
