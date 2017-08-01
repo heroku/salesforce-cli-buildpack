@@ -2,10 +2,7 @@
     "name": "salesforce-cli-buildback",
     "version": "1.0.0",
     "description": "Buildpack for the Salesforce CLI",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/wadewegner/salesforce-cli-buildback.git"
-    },
+    "repository": "https://github.com/wadewegner/salesforce-cli-buildback",
     "author": "",
     "license": "ISC",
     "bugs": {
