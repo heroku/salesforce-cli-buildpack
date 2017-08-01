@@ -45,8 +45,7 @@ install_sfdx_cli() {
   update "Updating Salesforce DX plugin (this may take a min) ..."
   sfdx update &>/dev/null
   PLUGINS=$(sfdx plugins)
-  update "Plugin version: $PLUGINS"
-  
+  # update "Plugin version: $PLUGINS"
 }
 
 setup_dirs() {
