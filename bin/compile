@@ -29,6 +29,7 @@ update() {
 }
 
 install_sfdx_cli() {
+  # local URL='https://developer.salesforce.com/media/salesforce-cli/beta/sfdx-v5.7.4-57b4969-linux-amd64.tar.xz'
   local URL='https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz'
   local DIR="$1"
   update "Downloading Salesforce CLI tarball ..."
@@ -41,9 +42,10 @@ install_sfdx_cli() {
   mkdir -p "$DIR/.local/share/sfdx"
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
   chmod -R 755  "$DIR/.local/share/sfdx/cli"
-  update "Updating Salesforce DX plugin (this may take a min) ..."
-  sfdx update &>/dev/null
+  # update "Updating Salesforce DX plugin (this may take a min) ..."
+  # sfdx update &>/dev/null
   PLUGINS=$(sfdx plugins)
+  update "Plugin version: $PLUGINS"
 }
 
 setup_dirs() {
