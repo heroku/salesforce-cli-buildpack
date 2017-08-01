@@ -1,8 +1,0 @@
-{
-  "name": "sfdx-cli",
-  "description": "SalesforceDX CLI",
-  "private": true,
-  "dependencies": {
-
-  }
-}
