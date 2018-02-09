@@ -28,7 +28,7 @@ update() {
   echo -e "       $*" || true
 }
 
-### Sertup functions
+### Setup functions
 install_sfdx_cli() {
   local URL='https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.99.1-d7efd75-linux-amd64.tar.xz'
   local DIR="$1"
