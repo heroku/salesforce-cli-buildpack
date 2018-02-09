@@ -29,15 +29,12 @@ update() {
 }
 
 install_sfdx_cli() {
-  # local URL='https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz'
   local URL='https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.99.1-d7efd75-linux-amd64.tar.xz'
   local DIR="$1"
   update "Downloading Salesforce CLI tarball ..."
   curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz" | tar xJ
   update "Copying Salesforce CLI binary ..."
-  # mkdir -p "$DIR/.sfdx/bin/sfdx"
-  # cp sfdx/bin/sfdx "$DIR/.sfdx/bin/sfdx"
-  # chmod -R 755 "$DIR/.sfdx/bin/sfdx"
+
   rm -rf "$DIR/.local/share/sfdx/cli"
   mkdir -p "$DIR/.local/share/sfdx"
   cp -r sfdx "$DIR/.local/share/sfdx/cli"
