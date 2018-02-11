@@ -59,5 +59,18 @@ update "-- ENV_DIR" $ENV_DIR
 setup_dirs "$BUILD_DIR"
 update "Starting CLI installation ..."
 install_sfdx_cli "$BUILD_DIR"
+
+# if no .profile, create one
+if [ ! -f $BUILD_DIR/.profile ]; then
+  update "Creating .profile ..."
+  echo "echo \"Updating PATH to include Salesforce CLI ...\"
+export PATH=\$PATH:/app/.local/share/sfdx/cli/bin/
+
+echo \"Updating Salesforce CLI plugin ...\"
+sfdx update" > $BUILD_DIR/.profile
+
+  update "Generated .profile to add CLI path and update"
+fi
+
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
 exit 0
