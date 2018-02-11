@@ -63,15 +63,12 @@ install_sfdx_cli "$BUILD_DIR"
 # if no .profile, create one
 if [ ! -f $BUILD_DIR/.profile ]; then
   update "Creating .profile ..."
-  echo "echo \"Updating PATH to include Salesforce CLI ...\"
+  echo "[ -z \"\$PORT\" ] && echo \"Running in web dyno so existing\" && exit 0;
 
-if [ \"\$PORT\" == \"\"]; then
-
-  export PATH=\$PATH:/app/.local/share/sfdx/cli/bin/
-
-  echo \"Updating Salesforce CLI plugin ...\"
-  sfdx update
-fi" > $BUILD_DIR/.profile
+echo \"Updating PATH to include Salesforce CLI ...\"
+export PATH=\$PATH:/app/.local/share/sfdx/cli/bin/
+echo \"Updating Salesforce CLI plugin ...\"
+sfdx update" > $BUILD_DIR/.profile
 
   update "Generated .profile to add CLI path and update"
 fi
