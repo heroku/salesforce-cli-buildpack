@@ -53,13 +53,16 @@ setup_dirs "$BUILD_DIR"
 log "Starting CLI installation ..."
 install_sfdx_cli "$BUILD_DIR"
 
-# if no .profile, create one
-if [ ! -f $BUILD_DIR/.profile ]; then
-  log "Creating .profile ..."
-  echo "echo \"Updating PATH to include Salesforce CLI ...\"
-export PATH=\$PATH:/app/vendor/sfdx/cli/bin/" > $BUILD_DIR/.profile
+# Create vendor folder
+mkdir -p $BUILD_DIR/.profile.d
 
-  log "Generated .profile to add CLI path and update"
+# if no .profile, create one
+if [ ! -f $BUILD_DIR/.profile.d/path.sh ]; then
+  log "Creating path.sh ..."
+  echo "echo \"Updating PATH to include Salesforce CLI ...\"
+export PATH=\$PATH:/app/vendor/sfdx/cli/bin/" > $BUILD_DIR/.profile.d/path.sh
+
+  log "Generated $BUILD_DIR/.profile.d/path.sh to add CLI path"
 fi
 
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
