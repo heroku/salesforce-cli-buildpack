@@ -35,6 +35,10 @@ install_sfdx_cli() {
   chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
+setup_dirs() {
+  export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
+}
+
 header 'Welcome to salesforce-cli-buildpack!'
 log "Exporting environment directories ..."
 export_env "$ENV_DIR"
@@ -54,10 +58,7 @@ install_sfdx_cli "$BUILD_DIR"
 if [ ! -f $BUILD_DIR/.profile ]; then
   log "Creating .profile ..."
   echo "echo \"Updating PATH to include Salesforce CLI ...\"
-export PATH=\$PATH:/app/vendor/sfdx/cli/bin/
-
-echo \"Updating Salesforce CLI plugin ...\"
-sfdx update" > $BUILD_DIR/.profile
+export PATH=\$PATH:/app/vendor/sfdx/cli/bin/" > $BUILD_DIR/.profile
 
   log "Generated .profile to add CLI path and update"
 fi
