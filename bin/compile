@@ -3,73 +3,66 @@
 
 START_TIME=$SECONDS
 
-# set -x            # debug every command
+# set -x
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 ### Configure directories
-CLI_PATH="/tmp/cli"
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
-source <(curl -s --retry 3 https://lang-common.s3.amazonaws.com/buildpack-stdlib/v7/stdlib.sh)
+# set defaults for optional config vars
+: ${SFDX_BUILDPACK_DEBUG:="false"}
 
-### Helpful functions
-header() {
-  echo "" || true
-  echo -e "-----> \e[34m$*\033[0m" || true
-  echo "" || true
-}
-
-update() {
-  echo -e "       $*" || true
-}
+source $BP_DIR/lib/common.sh
+source $BP_DIR/lib/stdlib.sh
 
 ### Setup functions
-install_sfdx_cli() {
-  local URL='https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.99.1-d7efd75-linux-amd64.tar.xz'
-  local DIR="$1"
-  update "Downloading Salesforce CLI tarball ..."
-  curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz" | tar xJ
-  update "Copying Salesforce CLI binary ..."
 
-  rm -rf "$DIR/.local/share/sfdx/cli"
-  mkdir -p "$DIR/.local/share/sfdx"
-  cp -r sfdx "$DIR/.local/share/sfdx/cli"
-  chmod -R 755  "$DIR/.local/share/sfdx/cli"
+install_sfdx_cli() {
+  log "Downloading Salesforce CLI tarball ..."
+  mkdir sfdx && curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx-cli/channels/stable/sfdx-cli-linux-x64.tar.xz" | tar xJ -C sfdx --strip-components 1
+
+  log "Copying Salesforce CLI binary ..."
+
+  rm -rf "$BUILD_DIR/vendor/sfdx"
+  mkdir -p "$BUILD_DIR/vendor/sfdx"
+  cp -r sfdx "$BUILD_DIR/vendor/sfdx/cli"
+  chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
 setup_dirs() {
-  local DIR="$1"
-  export PATH="$DIR/.local/share/sfdx/cli/bin:$DIR/.sfdx/bin:$PATH"
+  export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
-update "Exporting environment directories ..."
+log "Exporting environment directories ..."
 export_env "$ENV_DIR"
-update "Setting up paths ..."
 
-update "-- BUILD_DIR" $BUILD_DIR
-update "-- CACHE_DIR" $CACHE_DIR
-update "-- ENV_DIR" $ENV_DIR
+log "Setting up paths ..."
+
+debug "BUILD_DIR: $BUILD_DIR"
+debug "CACHE_DIR: $CACHE_DIR"
+debug "ENV_DIR: $ENV_DIR"
+debug "BP_DIR: $BP_DIR"
 
 setup_dirs "$BUILD_DIR"
-update "Starting CLI installation ..."
+log "Starting CLI installation ..."
 install_sfdx_cli "$BUILD_DIR"
 
+# Create vendor folder
+mkdir -p $BUILD_DIR/.profile.d
+
 # if no .profile, create one
-if [ ! -f $BUILD_DIR/.profile ]; then
-  update "Creating .profile ..."
+if [ ! -f $BUILD_DIR/.profile.d/path.sh ]; then
+  log "Creating path.sh ..."
   echo "echo \"Updating PATH to include Salesforce CLI ...\"
-export PATH=\$PATH:/app/.local/share/sfdx/cli/bin/
+export PATH=\$PATH:/app/vendor/sfdx/cli/bin/" > $BUILD_DIR/.profile.d/path.sh
 
-echo \"Updating Salesforce CLI plugin ...\"
-sfdx update" > $BUILD_DIR/.profile
-
-  update "Generated .profile to add CLI path and update"
+  log "Generated $BUILD_DIR/.profile.d/path.sh to add CLI path"
 fi
 
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
