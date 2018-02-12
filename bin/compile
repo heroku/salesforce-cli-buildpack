@@ -3,13 +3,14 @@
 
 START_TIME=$SECONDS
 
-# set -x            # debug every command
+if [ "$SFDX_BUILDPACK_DEBUG" == "true" ]; then
+  set -x
+fi
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 ### Configure directories
-CLI_PATH="/tmp/cli"
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
