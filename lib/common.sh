@@ -45,10 +45,6 @@ header() {
   echo "" || true
 }
 
-# update() {
-#   echo -e "       $*" || true
-# }
-
 status() {
   echo "-----> $*"
 }

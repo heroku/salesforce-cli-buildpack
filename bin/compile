@@ -41,11 +41,13 @@ setup_dirs() {
 header 'Welcome to salesforce-cli-buildpack!'
 log "Exporting environment directories ..."
 export_env "$ENV_DIR"
+
 log "Setting up paths ..."
 
-log "-- BUILD_DIR" $BUILD_DIR
-log "-- CACHE_DIR" $CACHE_DIR
-log "-- ENV_DIR" $ENV_DIR
+debug "BUILD_DIR: $BUILD_DIR"
+debug "CACHE_DIR: $CACHE_DIR"
+debug "ENV_DIR: $ENV_DIR"
+debug "BP_DIR: $BP_DIR"
 
 setup_dirs "$BUILD_DIR"
 log "Starting CLI installation ..."
