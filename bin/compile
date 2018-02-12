@@ -28,14 +28,14 @@ install_sfdx_cli() {
   curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz" | tar xJ
   log "Copying Salesforce CLI binary ..."
 
-  rm -rf "$BUILD_DIR/.local/share/sfdx/cli"
-  mkdir -p "$BUILD_DIR/.local/share/sfdx"
-  cp -r sfdx "$BUILD_DIR/.local/share/sfdx/cli"
-  chmod -R 755  "$BUILD_DIR/.local/share/sfdx/cli"
+  rm -rf "$BUILD_DIR/vendor/sfdx/cli"
+  mkdir -p "$BUILD_DIR/vendor/sfdx"
+  cp -r sfdx "$BUILD_DIR/vendor/sfdx/cli"
+  chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
 setup_dirs() {
-  export PATH="$BUILD_DIR/.local/share/sfdx/cli/bin:$BUILD_DIR/.sfdx/bin:$PATH"
+  export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$BUILD_DIR/.sfdx/bin:$PATH"
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
@@ -57,7 +57,7 @@ install_sfdx_cli "$BUILD_DIR"
 if [ ! -f $BUILD_DIR/.profile ]; then
   log "Creating .profile ..."
   echo "echo \"Updating PATH to include Salesforce CLI ...\"
-export PATH=\$PATH:/app/.local/share/sfdx/cli/bin/
+export PATH=\$PATH:/app/vendor/sfdx/cli/bin/
 
 echo \"Updating Salesforce CLI plugin ...\"
 sfdx update" > $BUILD_DIR/.profile
