@@ -35,10 +35,6 @@ install_sfdx_cli() {
   chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
-setup_dirs() {
-  export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$BUILD_DIR/.sfdx/bin:$PATH"
-}
-
 header 'Welcome to salesforce-cli-buildpack!'
 log "Exporting environment directories ..."
 export_env "$ENV_DIR"
