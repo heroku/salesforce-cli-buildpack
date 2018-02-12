@@ -15,26 +15,19 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
-source <(curl -s --retry 3 https://lang-common.s3.amazonaws.com/buildpack-stdlib/v7/stdlib.sh)
+# set defaults for optional config vars
+: ${SFDX_BUILDPACK_DEBUG:="false"}
 
-### Helpful functions
-header() {
-  echo "" || true
-  echo -e "-----> \e[34m$*\033[0m" || true
-  echo "" || true
-}
-
-update() {
-  echo -e "       $*" || true
-}
+source $BP_DIR/lib/common.sh
+source $BP_DIR/lib/stdlib.sh
 
 ### Setup functions
+
 install_sfdx_cli() {
-  local URL='https://developer.salesforce.com/media/salesforce-cli/sfdx-v5.99.1-d7efd75-linux-amd64.tar.xz'
   local DIR="$1"
-  update "Downloading Salesforce CLI tarball ..."
+  log "Downloading Salesforce CLI tarball ..."
   curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz" | tar xJ
-  update "Copying Salesforce CLI binary ..."
+  log "Copying Salesforce CLI binary ..."
 
   rm -rf "$DIR/.local/share/sfdx/cli"
   mkdir -p "$DIR/.local/share/sfdx"
@@ -48,28 +41,28 @@ setup_dirs() {
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
-update "Exporting environment directories ..."
+log "Exporting environment directories ..."
 export_env "$ENV_DIR"
-update "Setting up paths ..."
+log "Setting up paths ..."
 
-update "-- BUILD_DIR" $BUILD_DIR
-update "-- CACHE_DIR" $CACHE_DIR
-update "-- ENV_DIR" $ENV_DIR
+log "-- BUILD_DIR" $BUILD_DIR
+log "-- CACHE_DIR" $CACHE_DIR
+log "-- ENV_DIR" $ENV_DIR
 
 setup_dirs "$BUILD_DIR"
-update "Starting CLI installation ..."
+log "Starting CLI installation ..."
 install_sfdx_cli "$BUILD_DIR"
 
 # if no .profile, create one
 if [ ! -f $BUILD_DIR/.profile ]; then
-  update "Creating .profile ..."
+  log "Creating .profile ..."
   echo "echo \"Updating PATH to include Salesforce CLI ...\"
 export PATH=\$PATH:/app/.local/share/sfdx/cli/bin/
 
 echo \"Updating Salesforce CLI plugin ...\"
 sfdx update" > $BUILD_DIR/.profile
 
-  update "Generated .profile to add CLI path and update"
+  log "Generated .profile to add CLI path and update"
 fi
 
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
