@@ -39,7 +39,7 @@ install_jq() {
   log "Downloading jq ..."
   mkdir -p "$BUILD_DIR/vendor/sfdx/jq"
   cd "$BUILD_DIR/vendor/sfdx/jq"
-  wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+  wget --quiet -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
 }
 
 setup_dirs() {
