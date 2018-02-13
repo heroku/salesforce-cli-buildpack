@@ -9,6 +9,7 @@ set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 ### Configure directories
+
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
@@ -34,8 +35,16 @@ install_sfdx_cli() {
   chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
+install_jq() {
+  log "Downloading jq ..."
+  mkdir -p "$BUILD_DIR/vendor/sfdx/jq"
+  cd "$BUILD_DIR/vendor/sfdx/jq"
+  wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+}
+
 setup_dirs() {
   export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
+  export PATH="$BUILD_DIR/vendor/sfdx/jq:$PATH"
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
@@ -49,14 +58,17 @@ debug "CACHE_DIR: $CACHE_DIR"
 debug "ENV_DIR: $ENV_DIR"
 debug "BP_DIR: $BP_DIR"
 
-setup_dirs "$BUILD_DIR"
+setup_dirs
 log "Starting CLI installation ..."
-install_sfdx_cli "$BUILD_DIR"
+install_sfdx_cli
 
-# Create vendor folder
+log "Staring jq installation ..."
+install_jq
+
+# Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
 
-# if no .profile, create one
+# if no .profile.d/path.sh, create one
 if [ ! -f $BUILD_DIR/.profile.d/path.sh ]; then
   log "Creating path.sh ..."
   echo "echo \"Updating PATH to include Salesforce CLI ...\"
