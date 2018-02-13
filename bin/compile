@@ -62,7 +62,7 @@ setup_dirs
 log "Starting CLI installation ..."
 install_sfdx_cli
 
-log "Staring jq installation ..."
+log "Starting jq installation ..."
 install_jq
 
 # Create .profile.d folder
