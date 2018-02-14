@@ -72,8 +72,8 @@ mkdir -p $BUILD_DIR/.profile.d
 # if no .profile.d/path.sh, create one
 if [ ! -f $BUILD_DIR/.profile.d/path.sh ]; then
   log "Creating path.sh ..."
-  echo "echo \"Updating PATH to include Salesforce CLI ...\"
-export PATH=\$PATH:/app/vendor/sfdx/cli/bin:$BUILD_DIR/vendor/sfdx/jq && echo $PATH" > $BUILD_DIR/.profile.d/path.sh
+  echo "echo \"# Updating PATH to include Salesforce CLI ...\"
+export PATH=\$PATH:/app/vendor/sfdx/cli/bin:$BUILD_DIR/vendor/sfdx/jq" > $BUILD_DIR/.profile.d/path.sh
 
   log "Generated $BUILD_DIR/.profile.d/path.sh to add CLI path"
 fi
