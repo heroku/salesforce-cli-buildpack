@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+START_TIME=$SECONDS
+
+# set -x
+set -o errexit    # always exit on error
+set -o pipefail   # don't ignore exit codes when piping output
+unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
+
+### Configure directories
+
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
+BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+
+# set defaults for optional config vars
+: ${SFDX_BUILDPACK_DEBUG:="false"}
+
+source $BP_DIR/lib/common.sh
+source $BP_DIR/lib/stdlib.sh
+
+### Setup functions
+
+install_sfdx_cli() {
+  log "Downloading Salesforce CLI tarball ..."
+  mkdir sfdx && curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx-cli/channels/stable/sfdx-cli-linux-x64.tar.xz" | tar xJ -C sfdx --strip-components 1
+
+  log "Copying Salesforce CLI binary ..."
+
+  rm -rf "$BUILD_DIR/vendor/sfdx"
+  mkdir -p "$BUILD_DIR/vendor/sfdx"
+  cp -r sfdx "$BUILD_DIR/vendor/sfdx/cli"
+  chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
+}
+
+install_jq() {
+  log "Downloading jq ..."
+  mkdir -p "$BUILD_DIR/vendor/sfdx/jq"
+  cd "$BUILD_DIR/vendor/sfdx/jq"
+  wget --quiet -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+  chmod +x jq
+}
+
+setup_dirs() {
+  export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
+  export PATH="$BUILD_DIR/vendor/sfdx/jq:$PATH"
+}
+
+header 'Welcome to salesforce-cli-buildpack!'
+log "Exporting environment directories ..."
+export_env "$ENV_DIR"
+
+log "Setting up paths ..."
+
+debug "BUILD_DIR: $BUILD_DIR"
+debug "CACHE_DIR: $CACHE_DIR"
+debug "ENV_DIR: $ENV_DIR"
+debug "BP_DIR: $BP_DIR"
+
+setup_dirs
+log "Starting CLI installation ..."
+install_sfdx_cli
+
+log "Starting jq installation ..."
+install_jq
+
+# Create .profile.d folder
+mkdir -p $BUILD_DIR/.profile.d
+
+# if no .profile.d/path.sh, create one
+if [ ! -f $BUILD_DIR/.profile.d/path.sh ]; then
+  log "Creating path.sh ..."
+  echo "echo \"Updating PATH to include Salesforce CLI ...\"
+export PATH=\$PATH:/app/vendor/sfdx/cli/bin/" > $BUILD_DIR/.profile.d/path.sh
+
+  log "Generated $BUILD_DIR/.profile.d/path.sh to add CLI path"
+fi
+
+header "DONE! Completed in $(($SECONDS - $START_TIME))s"
+exit 0
