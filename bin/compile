@@ -35,17 +35,8 @@ install_sfdx_cli() {
   chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
-install_jq() {
-  log "Downloading jq ..."
-  mkdir -p "$BUILD_DIR/vendor/sfdx/jq"
-  cd "$BUILD_DIR/vendor/sfdx/jq"
-  wget --quiet -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
-  chmod +x jq
-}
-
 setup_dirs() {
   export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
-  export PATH="$BUILD_DIR/vendor/sfdx/jq:$PATH"
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
@@ -62,9 +53,6 @@ debug "BP_DIR: $BP_DIR"
 setup_dirs
 log "Starting CLI installation ..."
 install_sfdx_cli
-
-log "Starting jq installation ..."
-install_jq
 
 # Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
