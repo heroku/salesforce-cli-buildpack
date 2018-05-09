@@ -40,15 +40,22 @@ install_heroku_cli() {
   curl --location "https://cli-assets.heroku.com/heroku-linux-x64.tar.gz" -O
   log "unzipping heroku tarball"
   tar -xf heroku-linux-x64.tar.gz
-  cp -R heroku /usr/local/bin/heroku
-  cp -R heroku /usr/local/lib/heroku
+
+
+  rm -rf "$BUILD_DIR/vendor/heroku"
+  mkdir -p "$BUILD_DIR/vendor/heroku"
+  cp -r heroku "$BUILD_DIR/vendor/heroku/cli"
+  chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
+
   log "cleaning up heroku artifacts"
-  rm -rf heroku
   rm heroku-linux-x64.tar.gz
+  rm -rf heroku
+
 }
 
 setup_dirs() {
   export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
+  export PATH="$BUILD_DIR/vendor/heroku/cli/bin:$PATH"
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
