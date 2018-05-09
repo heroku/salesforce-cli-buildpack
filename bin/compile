@@ -54,6 +54,7 @@ setup_dirs
 log "Starting CLI installation ..."
 install_sfdx_cli
 log "installing heroku cli"
+curl https://cli-assets.heroku.com/install-standalone.sh | sh
 
 
 # Create .profile.d folder
