@@ -53,6 +53,8 @@ debug "BP_DIR: $BP_DIR"
 setup_dirs
 log "Starting CLI installation ..."
 install_sfdx_cli
+log "installing heroku cli"
+
 
 # Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
