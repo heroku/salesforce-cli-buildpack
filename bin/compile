@@ -45,7 +45,7 @@ install_heroku_cli() {
   rm -rf "$BUILD_DIR/vendor/heroku"
   mkdir -p "$BUILD_DIR/vendor/heroku"
   cp -r heroku "$BUILD_DIR/vendor/heroku/cli"
-  chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
+  chmod -R 755  "$BUILD_DIR/vendor/heroku/cli"
 
   log "cleaning up heroku artifacts"
   rm heroku-linux-x64.tar.gz
