@@ -35,17 +35,27 @@ install_sfdx_cli() {
   chmod -R 755  "$BUILD_DIR/vendor/sfdx/cli"
 }
 
-install_jq() {
-  log "Downloading jq ..."
-  mkdir -p "$BUILD_DIR/vendor/sfdx/jq"
-  cd "$BUILD_DIR/vendor/sfdx/jq"
-  wget --quiet -O jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
-  chmod +x jq
+install_heroku_cli() {
+  log "downloading heroku tarball"
+  curl --location "https://cli-assets.heroku.com/heroku-linux-x64.tar.gz" -O
+  log "unzipping heroku tarball"
+  tar -xf heroku-linux-x64.tar.gz
+
+
+  rm -rf "$BUILD_DIR/vendor/heroku"
+  mkdir -p "$BUILD_DIR/vendor/heroku"
+  cp -r heroku "$BUILD_DIR/vendor/heroku/cli"
+  chmod -R 755  "$BUILD_DIR/vendor/heroku/cli"
+
+  log "cleaning up heroku artifacts"
+  rm heroku-linux-x64.tar.gz
+  rm -rf heroku
+
 }
 
 setup_dirs() {
   export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
-  export PATH="$BUILD_DIR/vendor/sfdx/jq:$PATH"
+  export PATH="$BUILD_DIR/vendor/heroku/cli/bin:$PATH"
 }
 
 header 'Welcome to salesforce-cli-buildpack!'
@@ -62,9 +72,9 @@ debug "BP_DIR: $BP_DIR"
 setup_dirs
 log "Starting CLI installation ..."
 install_sfdx_cli
+log "Starting Heroku CLI instalation ..."
+install_heroku_cli
 
-log "Starting jq installation ..."
-install_jq
 
 # Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
