@@ -4,11 +4,8 @@ This is the official [Heroku buildpack](http://devcenter.heroku.com/articles/bui
 
 ## Usage
 
-To use `sfdx` and `jq`, you simply need to export the appropriate paths:
+On a terminal, run the following command to add an additional buildpack to your App.
 
-```
-export PATH="$BUILD_DIR/vendor/sfdx/cli/bin:$PATH"
-export PATH="$BUILD_DIR/vendor/sfdx/jq:$PATH"
-```
-
-The `$BUILD_DIR` is the path where your apps source is stored on the Heroku dyno.
+````
+heroku buildpacks:add https://github.com/heroku/salesforce-cli-buildpack --index 1
+````
