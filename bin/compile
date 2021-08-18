@@ -25,7 +25,7 @@ source $BP_DIR/lib/stdlib.sh
 
 install_sfdx_cli() {
   log "Downloading Salesforce CLI tarball ..."
-  mkdir sfdx && curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx-cli/channels/stable/sfdx-cli-linux-x64.tar.xz" | tar xJ -C sfdx --strip-components 1
+  mkdir sfdx && curl --silent --location "https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz" | tar xJ -C sfdx --strip-components 1
 
   log "Copying Salesforce CLI binary ..."
 
