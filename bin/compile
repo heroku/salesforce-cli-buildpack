@@ -81,9 +81,9 @@ fi
 if [ -f "$BUILD_DIR/.sfdx-plugins" ]; then
   log "Installing sfdx plugins ..."
   plugins_arg="$(echo -n $(cat $BUILD_DIR/.sfdx-plugins))"
-  /app/vendor/sfdx/cli/bin/sfdx plugins:install $plugins_arg
+  $BUILD_DIR/vendor/sfdx/cli/bin/sfdx plugins:install $plugins_arg
   log "sfdx plugins"
-  /app/vendor/sfdx/cli/bin/sfdx plugins
+  $BUILD_DIR/vendor/sfdx/cli/bin/sfdx plugins
 fi
 
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
