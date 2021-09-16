@@ -81,6 +81,7 @@ fi
 if [ -f "$BUILD_DIR/.sfdx-plugins" ]; then
   log "Installing sfdx plugins ..."
   plugins_arg="$(echo -n $(cat $BUILD_DIR/.sfdx-plugins))"
+  export HOME="$BUILD_DIR"
   $BUILD_DIR/vendor/sfdx/cli/bin/sfdx plugins:install $plugins_arg
   log "sfdx plugins"
   $BUILD_DIR/vendor/sfdx/cli/bin/sfdx plugins
