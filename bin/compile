@@ -92,7 +92,7 @@ if [ -f "$BUILD_DIR/.sf-plugins" ]; then
   plugins_arg="$(echo -n $(cat $BUILD_DIR/.sf-plugins))"
   export HOME="$BUILD_DIR"
   $BUILD_DIR/vendor/sfdx/cli/bin/sf plugins install $plugins_arg
-  log "sfdx plugins"
+  log "sf plugins"
   $BUILD_DIR/vendor/sfdx/cli/bin/sf plugins
 fi
 
