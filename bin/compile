@@ -87,5 +87,14 @@ if [ -f "$BUILD_DIR/.sfdx-plugins" ]; then
   $BUILD_DIR/vendor/sfdx/cli/bin/sfdx plugins
 fi
 
+if [ -f "$BUILD_DIR/.sf-plugins" ]; then
+  log "Installing sf plugins ..."
+  plugins_arg="$(echo -n $(cat $BUILD_DIR/.sf-plugins))"
+  export HOME="$BUILD_DIR"
+  $BUILD_DIR/vendor/sfdx/cli/bin/sf plugins install $plugins_arg
+  log "sfdx plugins"
+  $BUILD_DIR/vendor/sfdx/cli/bin/sf plugins
+fi
+
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
 exit 0
