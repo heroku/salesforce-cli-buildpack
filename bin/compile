@@ -69,13 +69,13 @@ install_jq
 # Create .profile.d folder
 mkdir -p $BUILD_DIR/.profile.d
 
-# if no .profile.d/path.sh, create one
-if [ ! -f $BUILD_DIR/.profile.d/path.sh ]; then
-  log "Creating path.sh ..."
+# if no .profile.d/salesforce_cli_path.sh, create one
+if [ ! -f $BUILD_DIR/.profile.d/salesforce_cli_path.sh ]; then
+  log "Creating salesforce_cli_path.sh ..."
   echo "echo \"Updating PATH to include Salesforce CLI ...\"
-export PATH=\$PATH:/app/vendor/sfdx/cli/bin/" > $BUILD_DIR/.profile.d/path.sh
+export PATH=\$PATH:/app/vendor/sfdx/cli/bin/" > $BUILD_DIR/.profile.d/salesforce_cli_path.sh
 
-  log "Generated $BUILD_DIR/.profile.d/path.sh to add CLI path"
+  log "Generated $BUILD_DIR/.profile.d/salesforce_cli_path.sh to add CLI path"
 fi
 
 header "DONE! Completed in $(($SECONDS - $START_TIME))s"
